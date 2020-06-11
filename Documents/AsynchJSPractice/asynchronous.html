@@ -49,13 +49,14 @@
         //Resolve => successful state 
         // Reject =>  fialed state
 
+        
         const getIDs = new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve([23,78,90,87]);
             }, 1500);
 
         });
-
+        
         const getRecipe = recID => {
             return new Promise((resolve, reject) => {
                 setTimeout(ID =>{
@@ -65,6 +66,7 @@
             });
         }
 
+        /*
         //Event handler when promise was successful 
         getIDs
             .then((IDs) => {
@@ -77,6 +79,23 @@
             .catch(error => {
                 console.log(error);
             });
+        */
+
+
+
+        // ASYNCH AND AWAIT
+        async function getRecipiesAW(){
+            const IDs = await getIDs;
+            console.log(IDs);
+
+            const recipe = await getRecipe(IDs[2]);
+            console.log(recipe);
+
+            return recipe;
+        }
+
+        getRecipiesAW().then(result => console.log(`${result} is the best ever!`));
+
 
     </script>
 </body>
